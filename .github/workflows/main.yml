@@ -1,0 +1,32 @@
+yamdb_final
+├── .git/ 
+├── .github/ 
+│    └── workflows/ <-- Директория workflow
+|          └── yamdb_workflow.yml <-- Файл с инструкциями
+├── api_yamdb/
+│    ├── api/ <-- Директория приложения api
+│    │   └── # Файлы приложения
+│    ├── api_yamdb/
+│    │   ├── __init__.py
+│    │   ├── settings.py
+│    │   ├── urls.py
+│    │   └── wsgi.py
+│    ├── reviews/ <-- Директория приложения reviews
+│    │   └── # Файлы приложения
+│    ├── static <-- Директория для сборки статических файлов проекта
+│    │   └── redoc.yaml
+│    ├── templates
+│    │   └── redoc.html
+|    ├── Dockerfile 
+│    ├── manage.py
+|    └── requirements.txt 
+├── infra/ <-- Директория с файлами для развёртывания инфраструктуры
+│    ├── nginx/ 
+│    │   └── default.conf
+│    ├── .env
+|    └── docker-compose.yaml
+├── tests/ <-- Тесты для проверки работы перед сдачей, уже будут в репозитории
+├── .gitignore
+├── pytest.ini <-- Файл уже будет в репозитории
+├── README.md
+└── setup.cfg <-- Файл уже будет в репозитории
