@@ -1,24 +1,19 @@
+from api.v1 import serializers
+from api.v1.filters import TitleFilter
+from api.v1.mixins import CreateDestroyViewSet
+from api.v1.permissions import (IsAdmin, IsAdminOrReadOnly,
+                                OwnerOrModeratorOrAdmin)
+from api.v1.utils import send_confirmation_code
 from django.contrib.auth.tokens import default_token_generator
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, status, viewsets
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.pagination import PageNumberPagination
-from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from reviews.models import Category, Genre, Review, Title
-from api.v1.permissions import (
-    IsAdminOrReadOnly,
-    IsAdmin,
-    OwnerOrModeratorOrAdmin
-)
-from api.v1 import serializers
-from api.v1.mixins import CreateDestroyViewSet
-from api.v1.filters import TitleFilter
-from api.v1.utils import send_confirmation_code
 from users.models import User
 
 
@@ -197,12 +192,12 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
 
     def get_review(self):
-        review = get_object_or_404(
+
+        return get_object_or_404(
             Review,
             pk=self.kwargs.get('review_id'),
             title__id=self.kwargs.get('title_id')
         )
-        return review
 
     def get_queryset(self):
         return self.get_review().comments.all()
