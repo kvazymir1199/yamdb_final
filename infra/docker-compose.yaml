@@ -48,3 +48,4 @@ volumes:
   db_data:
   static_value:
   media_value:
+  
