@@ -1,6 +1,5 @@
-<<<<<<< develop
+# yamdb api
 
-# api_final
 [![API for YaMDB project workflow](https://github.com/bondarval/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=main)](https://github.com/bondarval/yamdb_final/actions/workflows/yamdb_workflow.yml)
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
@@ -11,51 +10,55 @@
 [![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?style=flat-square&logo=Yandex.Cloud)](https://cloud.yandex.ru/)
 [![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)](https://www.django-rest-framework.org/)
 [![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-## Authors:
-
-[dazdik](https://github.com/dazdik)
-
-[FedOK007](https://github.com/FedOK007)
-
-[kvazymir1199](https://github.com/kvazymir1199)
 
 ## Discription:
 
 ### REST API для YaMDb
 
-Created on the basis of the framework [Django REST Framework (DRF)](https://github.com/ilyachch/django-rest-framework-rusdoc)
+Создан на основе
+фреймворка [Django REST Framework (DRF)](https://github.com/ilyachch/django-rest-framework-rusdoc)
 
-> The YaMDb project collects user reviews of works. The works are divided into categories: "Books", "Films", "Music".
->
-> The works themselves are not stored in YaMDb, you can't watch a movie or listen to music here.
->
-> In each category there are works: books, movies or music.
->
-> A work can be assigned a genre from the preset list (for example, "Fairy Tale", "Rock" or "Arthouse").
->
-> Grateful or outraged users leave text reviews for the works and rate the work, an average rating of the work is formed from user ratings.
+Проект YaMDb собирает отзывы пользователей о работах. Работы разделены на категории: "Книги", "Фильмы", "Музыка".
+Сами работы не хранятся в Imdb, вы не можете посмотреть фильм или послушать музыку здесь.
+В каждой категории есть свои произведения: книги, фильмы или музыка.
+Произведению можно присвоить жанр из предустановленного списка (например, "Сказка", "Рок" или "Артхаус").
+
+Благодарные или возмущенные пользователи оставляют текстовые отзывы о работах и оценивают работу,
+из оценок пользователей формируется средняя оценка работы.
 
 ## Technologies
 
-Python 3.7
+- [Python 3.10](https://www.python.org/downloads/release/python-388/)
+- [Django 3.2](https://www.djangoproject.com/download/)
+- [Django Rest Framework 3.12.4](https://www.django-rest-framework.org/)
+- [PostgreSQL 13.0](https://www.postgresql.org/download/)
+- [gunicorn 20.0.4](https://pypi.org/project/gunicorn/)
+- [nginx 1.21.3](https://nginx.org/ru/download.html)
 
-Django 3.2.15
+# Контейнер
+- [Docker 20.10.14](https://www.docker.com/)
+- [Docker Compose 2.4.1](https://docs.docker.com/compose/)
+
+# URL's
+- http://84.252.137.228/api/v1
+- http://84.252.137.228/admin
+- http://84.252.137.228/redoc
 
 ## Start Project
 
-Clone the repository and go to it on the command line:
+### Clone the repository and go to it on the command line:
 
 ```
 git@github.com:kvazymir1199/api_yamdb.git
 ```
 
-Пo to the project directory
+### to the project directory
 
-```go
+```
 cd api_yamdb
 ```
 
-Create and activate a virtual environment:
+### Create and activate a virtual environment:
 
 ```
 python -m venv venv
@@ -69,79 +72,142 @@ source venv/Scripts/activate
 python -m pip install --upgrade pip
 ```
 
-Install dependencies from requirements.txt:
+### Install dependencies from requirements.txt:
 
 ```
 pip install -r requirements.txt
 ```
 
-```
-Запуск проекта в Docker
+### Get project in Docker
 
-Для запуска приложения в контейнерах установите Docker на ваш компьютер (сервер).
+#### Для запуска приложения в контейнерах установите Docker на ваш компьютер (сервер).
 
-Наполнение .env
-Файл .env должен находится в директории в директории infra.
-Пример наполнения данного файла:
+Наполнение env
+(Файл .env должен находится в директории в директории infra.)
 
-DB_ENGINE=django.db.backends.postgresql - # указываем, что работаем с postgresql
-DB_NAME=postgres # указываем имя базы данных
-POSTGRES_USER=postgres # задаем логин для подключения к базе данных
-POSTGRES_PASSWORD=postgres # устанавливаем пароль для подключения к БД (установите свой)
-DB_HOST=db # название сервиса (контейнера)
-DB_PORT=5432 # порт для подключения к БД
-После наполнения файла .env необходило изменить константу DATABASE файла settings.py
-следующим образом:
+1) Пример наполнения env файла:
+    * DB_ENGINE=django.db.backends.postgresql
+    * DB_NAME=postgres
+    * POSTGRES_USER=postgres
+    * POSTGRES_PASSWORD=postgres
+    * DB_HOST=db
+    * DB_PORT=5432
+2) После наполнения файла .env необходило изменить константу DATABASE файла settings.py
+   следующим образом:
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
-    }
-}
-Последовательность запуска приложения
-Сборка контейнера. Перейдите в папку infra и выполните команду docker-compose для сборки и запуска контейнера:
-docker-compose up -d --build
-Запуск приложения api_yamdb. После сборки контейнеров необходимо выполнить следующие команды в терминале:
-# Миграции
-docker-compose exec web python manage.py migrate
-# Создание суперпользователя
-docker-compose exec web python manage.py createsuperuser
-# Сбор статики
-docker-compose exec web python manage.py collectstatic --no-input
-# Резервное копирование данных из БД
-docker-compose exec web python manage.py dumpdata > dump.json
-python3 manage.py shell  
-# выполнить в открывшемся терминале:
->>> from django.contrib.contenttypes.models import ContentType
->>> ContentType.objects.all().delete()
->>> quit()
+    * DATABASES = {
+        * 'default': {
+            * 'ENGINE': os.getenv('DB_ENGINE'),
+            * 'NAME': os.getenv('DB_NAME'),
+            * 'USER': os.getenv('POSTGRES_USER'),
+            * 'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+            * 'HOST': os.getenv('DB_HOST'),
+            * 'PORT': os.getenv('DB_PORT')
+              }
+              }
+            *
+3) Последовательность запуска приложения. Сборка контейнера:
+    * Перейдите в папку infra и выполните команду docker-compose для сборки и запуска контейнера:
+      docker-compose up -d --build
+    * Запуск приложения api_yamdb. После сборки контейнеров необходимо выполнить следующие команды в терминале:
+    * Миграции:
 
-python manage.py loaddata fixtures.json
+      ```docker-compose exec web python manage.py migrate```
 
-> When you launch the project, at http://127.0.0.1:8000/redoc / documentation for the Yandex API will be available. The documentation describes how the API works. The documentation is presented in Doc format.
+    * Создание суперпользователя:
+
+      ```docker-compose exec web python manage.py createsuperuser```
+
+    * Сбор статики:
+
+      ```docker-compose exec web python manage.py collectstatic --no-input```
+
+    * Резервное копирование данных из БД:
+
+      ```docker-compose exec web python manage.py dumpdata > dump.json```
+    * Открыть терминал
+
+      ```python3 manage.py shell```
+
+    * выполнить в открывшемся терминале:
+       ``` 
+      from django.contrib.contenttypes.models import ContentType
+      ContentType.objects.all().delete()
+      quit()
+      ```
+    * Заполнить базу данных из файла с дампом:
+      ```
+      python manage.py loaddata fixtures.json
+      ```
+
+When you launch the project, at http://127.0.0.1:8000/redoc / documentation for the Yandex API will be available. The
+documentation describes how the API works. The documentation is presented in Doc format.
 
 ## Request examples
 
-> Get (http://127.0.0.1:8000/api/v1/categories/1):
+**Get**: http://127.0.0.1:8000/api/v1/categories/1
 
+``` 
+[
+  {
+    "count": 0,
+    "next": "string",
+    "previous": "string",
+    "results": [
+      {
+        "name": "string",
+        "slug": "string"
+      }
+    ]
+  }
+]
 ```
 
-{
-"name": "Film",
-"slug": "Movie"
-}
+**POST**: http://84.252.137.228/api/v1/categories/
 
+Тело запроса:
+
+```
+{
+  "name": "string",
+  "slug": "string"
+}
+```
+
+Пример ответа:
+
+```
+{
+  "name": "string",
+  "slug": "string"
+}
+```
+
+**GET**: http://84.252.137.228/api/v1/users/
+
+```
+[
+  {
+    "count": 0,
+    "next": "string",
+    "previous": "string",
+    "results": [
+      {
+        "username": "string",
+        "email": "user@example.com",
+        "first_name": "string",
+        "last_name": "string",
+        "bio": "string",
+        "role": "user"
+      }
+    ]
+  }
+]
 ```
 
 ## Requirements:
 
 ```
-
 asgiref==3.5.2
 atomicwrites==1.4.1
 attrs==22.1.0
@@ -170,13 +236,8 @@ toml==0.10.2
 typing_extensions==4.3.0
 urllib3==1.26.12
 zipp==3.8.1
-
 ```
 
-=======
+## Authors:
 
-Mironov Denis
-
-Дарья Андреевна
-```
-Link: http://51.250.70.35/
+* [kvazymir1199](https://github.com/kvazymir1199)
