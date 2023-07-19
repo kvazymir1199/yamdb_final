@@ -1,14 +1,15 @@
-# yamdb api
+# YAMDB API
+
 
 [![API for YaMDB project workflow](https://github.com/bondarval/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=main)](https://github.com/bondarval/yamdb_final/actions/workflows/yamdb_workflow.yml)
 
-[![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python&)](https://www.python.org/)
 [![Nginx](https://img.shields.io/badge/-NGINX-464646?style=flat-square&logo=NGINX)](https://nginx.org/ru/)
 [![gunicorn](https://img.shields.io/badge/-gunicorn-464646?style=flat-square&logo=gunicorn)](https://gunicorn.org/)
 [![docker](https://img.shields.io/badge/-Docker-464646?style=flat-square&logo=docker)](https://www.docker.com/)
 [![GitHub%20Actions](https://img.shields.io/badge/-GitHub%20Actions-464646?style=flat-square&logo=GitHub%20actions)](https://github.com/features/actions)
 [![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?style=flat-square&logo=Yandex.Cloud)](https://cloud.yandex.ru/)
-[![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)](https://www.django-rest-framework.org/)
+[![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=darkgreen)](https://www.django-rest-framework.org/)
 [![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
 ## Discription:
@@ -26,7 +27,7 @@
 Благодарные или возмущенные пользователи оставляют текстовые отзывы о работах и оценивают работу,
 из оценок пользователей формируется средняя оценка работы.
 
-## Technologies
+## Технологии
 
 - [Python 3.10](https://www.python.org/downloads/release/python-388/)
 - [Django 3.2](https://www.djangoproject.com/download/)
@@ -36,29 +37,31 @@
 - [nginx 1.21.3](https://nginx.org/ru/download.html)
 
 # Контейнер
+
 - [Docker 20.10.14](https://www.docker.com/)
 - [Docker Compose 2.4.1](https://docs.docker.com/compose/)
 
 # URL's
+
 - http://84.252.137.228/api/v1
 - http://84.252.137.228/admin
 - http://84.252.137.228/redoc
 
-## Start Project
+## С чего начать
 
-### Clone the repository and go to it on the command line:
+### Клонируйте репозиторий и перейдите к нему из командной строки:
 
 ```
 git@github.com:kvazymir1199/api_yamdb.git
 ```
 
-### to the project directory
+### в каталог проекта
 
 ```
 cd api_yamdb
 ```
 
-### Create and activate a virtual environment:
+### Создайте и активируйте виртуальную среду:
 
 ```
 python -m venv venv
@@ -72,13 +75,13 @@ source venv/Scripts/activate
 python -m pip install --upgrade pip
 ```
 
-### Install dependencies from requirements.txt:
+### Установите зависимости от requirements.txt:
 
 ```
 pip install -r requirements.txt
 ```
 
-### Get project in Docker
+### Получить проект в Docker:
 
 #### Для запуска приложения в контейнерах установите Docker на ваш компьютер (сервер).
 
@@ -140,10 +143,9 @@ pip install -r requirements.txt
       python manage.py loaddata fixtures.json
       ```
 
-When you launch the project, at http://127.0.0.1:8000/redoc / documentation for the Yandex API will be available. The
-documentation describes how the API works. The documentation is presented in Doc format.
-
-## Request examples
+Когда вы запускаете проект, в http://127.0.0.1:8000/redoc / будет доступна документация по API Яндекса. 
+Документация описывает, как работает API. Документация представлена в формате ReDoc.
+## Примеры запросов
 
 **Get**: http://127.0.0.1:8000/api/v1/categories/1
 
@@ -205,7 +207,7 @@ documentation describes how the API works. The documentation is presented in Doc
 ]
 ```
 
-## Requirements:
+## Требования:
 
 ```
 asgiref==3.5.2
@@ -238,6 +240,6 @@ urllib3==1.26.12
 zipp==3.8.1
 ```
 
-## Authors:
+## Авторы:
 
 * [kvazymir1199](https://github.com/kvazymir1199)
